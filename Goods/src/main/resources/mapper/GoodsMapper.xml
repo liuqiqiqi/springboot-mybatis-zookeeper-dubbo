@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guojiayikao.dubbo.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.guojiayikao.dubbo.entity.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goodsname" jdbcType="VARCHAR" property="goodsname" />
+    <result column="goodsuse" jdbcType="INTEGER" property="goodsuse" />
+    <result column="goodsimg" jdbcType="VARCHAR" property="goodsimg" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="goodstype" jdbcType="INTEGER" property="goodstype" />
+    <result column="is_luckdraw" jdbcType="INTEGER" property="isLuckdraw" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from branch_points_mall_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.guojiayikao.dubbo.entity.Goods">
+    insert into branch_points_mall_goods (id, goodsname, goodsuse, 
+      goodsimg, status, goodstype, 
+      is_luckdraw)
+    values (#{id,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{goodsuse,jdbcType=INTEGER}, 
+      #{goodsimg,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{goodstype,jdbcType=INTEGER}, 
+      #{isLuckdraw,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.guojiayikao.dubbo.entity.Goods">
+    update branch_points_mall_goods
+    set goodsname = #{goodsname,jdbcType=VARCHAR},
+      goodsuse = #{goodsuse,jdbcType=INTEGER},
+      goodsimg = #{goodsimg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      goodstype = #{goodstype,jdbcType=INTEGER},
+      is_luckdraw = #{isLuckdraw,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, goodsname, goodsuse, goodsimg, status, goodstype, is_luckdraw
+    from branch_points_mall_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, goodsname, goodsuse, goodsimg, status, goodstype, is_luckdraw
+    from branch_points_mall_goods
+  </select>
+</mapper>
